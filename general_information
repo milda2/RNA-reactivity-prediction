@@ -1,0 +1,11 @@
+RNA structure is key to its function. Main RNA structural features include:
+  -> negatively charged ribose–phosphate chain, makes up two-thirds of the mass of a nucleotide 
+  -> bases, which account for the remaining third of mass
+  -> bases stack like coins in a roll with no space between them for solvent
+  -> Stacked bases are ∼3.4 Å apart
+  -> “Structured” RNAs adopt one highly populated state but is not static
+  -> “unstructured” RNA has no favored state; still, likely some specific states will be more populated
+  -> prediction algos like Mfold are based on thermodynamics. Alternative pairing possibilities with theoretically higher free energies 
+      are generally ignored. The danger of only considering the lowest free-energy structure is that the community ends up taking an untested possibility at face value.
+  -> information from https://www.pnas.org/doi/10.1073/pnas.2112677119. 
+
