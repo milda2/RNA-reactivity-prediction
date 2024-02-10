@@ -9,4 +9,39 @@ RNA structure is key to its function. Main RNA structural features include:
       are generally ignored. The danger of only considering the lowest free-energy structure is that the community ends up taking an untested possibility at face value.
   -> information from https://www.pnas.org/doi/10.1073/pnas.2112677119. 
 
-TODO: https://www.nature.com/articles/s41592-022-01605-0 ; https://www.biorxiv.org/content/10.1101/2023.04.25.538330v2
+Main goal of the model is to predic the reactivity of the RNA bases to 2 chemical substances. These substances are commonly used to infer about the RNA structure.
+
+Packages using a physics-based approach (assigns thermodynamic values to a set of structural features): ViennaRNA, NUPACK and RNAstructure.
+Their parameters traditionally characterized via optical melting experiments and then generalized by experts. 
+Other approaches (statistical learning methods to derive parameters for structural features): RNAsoft, CONTRAfold, CycleFold, LearnToFold, MXfold, SPOT-RNA.
+ -> The study evaluates the performance of packages in two tasks including predicting chemical reactivity data through calculating probabilities that nucleotides are unpaired.
+ -> CONTRAfold and RNASoft perform better than packages that are in wider use.
+ -> Chemical mapping is a widely used readout of RNA secondary structure.
+ -> A nucleotide’s reactivity in a chemical mapping experiment depends on the availability of the nucleotide to be chemically modified, 
+ -> and hence provides an ensemble-averaged readout of the nucleotide’s deprotection from base pairing or other binding partners. 
+Structure prediction algorithms are able to estimate the ensemble-averaged probability that a nucleotide is paired or unpaired. 
+
+
+Within each chemical mapping dataset, CD-HIT-EST72 was used to **filter sequences with greater than 80% redundancy** (excluding a shared 3′ primer binding site). 
+Nucleotides with reactivities less than or equal to zero or greater than the 95th percentile of the dataset were removed from analysis. 
+To test which model predicts reactivities best, 24 datasets of more than 38k construacts, 80-130 nuleotides in lenght were tested. First, the RNA sequence was designed, mapped experimentally,
+..., and then packages were emplyoed to predict the reactivity. Experimental and prediciton findings were comapred giving the accuracy as spearmans corr. test. Best packages were CONTRAfold 2...
+... and Vienna 2 60oC.
+
+Here, data we have is:
+-> train_data.csv - the training data, with one experimental profile per row. Includes sequence id, sequence, experiment type (0 1), ... other ... & ..
+   reactivity_0001, reactivity_0002,… - (float) an array of floating point numbers of the train data, should have the same length as the RNA sequence, ....
+   which defines the reactivity profile for the RNA. These are the type of data that need to be predicted.
+-> rmdb_data.csv - provides the majority of the sequence profiles available in the RNA Mapping DataBase in the same format as train_data.csv.
+-> sample_submission.csv - a sample submission file. Separate sequence positions are put on separate rows.
+   id - Integer (0,1,…) that identifies each sequence position in the sample submission. The sequences associated with each of these id values are provided in test_sequences.csv
+-> test_sequences.csv - the test set sequences. id_min, id_max - (integer) Minimum and maximum id values for the test sequence in a correctly formatted submission file.
+   sequence_id - (string) An arbitrary identifier like eee73c1836bc for each test sequence. sequence - (string) Describes the RNA sequence, a string of A, C, G, and U, 
+   for which DMS and 2A3 reactivity needs to predicted and submitted in a file like sample_submission.csv.
+   future - (Boolean) Sequences whose data will be collected after the start of the competition (but before final scoring) are labeled as 1.
+
+
+TO DO: a) merge train_data & rmdb b) clean data c) split data & make a model d) train e)test f) evaluate
+
+
+
