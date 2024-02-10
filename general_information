@@ -26,7 +26,7 @@ Within each chemical mapping dataset, CD-HIT-EST72 was used to **filter sequence
 Nucleotides with reactivities less than or equal to zero or greater than the 95th percentile of the dataset were removed from analysis. 
 To test which model predicts reactivities best, 24 datasets of more than 38k construacts, 80-130 nuleotides in lenght were tested. First, the RNA sequence was designed, mapped experimentally,
 ..., and then packages were emplyoed to predict the reactivity. Experimental and prediciton findings were comapred giving the accuracy as spearmans corr. test. Best packages were CONTRAfold 2...
-... and Vienna 2 60oC.
+... and Vienna 2 60oC. More info: https://www.nature.com/articles/s41592-022-01605-0#Sec9
 
 Here, data we have is:
 -> train_data.csv - the training data, with one experimental profile per row. Includes sequence id, sequence, experiment type (0 1), ... other ... & ..
